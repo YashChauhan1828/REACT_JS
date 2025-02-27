@@ -29,6 +29,10 @@ export const Navbar = () =>
         <Link class="nav-link" to="/loginpage">Login</Link>
       </li>
 
+      <li>
+        <Link class="nav-link" to="/formdemo8">FormDemo8</Link>
+      </li>
+
 
       <li>
         <Link class="nav-link" to="/formdemo2">FormDemo2</Link>
