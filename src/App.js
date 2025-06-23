@@ -44,6 +44,14 @@ import { EcomNavbar } from './components/Ecom-app/EcomNavBar';
 import { EcomSignUp } from './components/Ecom-app/EcomSignUp';
 import { EcomLogin } from './components/Ecom-app/EcomLogin';
 import { EcomHome } from './components/Ecom-app/EcomHome';
+import { EcomProducts } from './components/Ecom-app/EcomProducts';
+import { EcomProductView } from './components/Ecom-app/EcomProductView';
+import { EcomMyCart } from './components/Ecom-app/EcomMyCart';
+import { EcomEmailVeri } from './components/Ecom-app/EcomEmailVeri';
+import { EcomShippingDetails } from './components/Ecom-app/EcomShippingDetails';
+import { EcomPayment } from './components/Ecom-app/EcomPayment';
+
+
 
 
 function App() {
@@ -62,11 +70,18 @@ var address = {
    return (
     <div className="App">
       <EcomNavbar></EcomNavbar>
+      {/* <Navbar></Navbar> */}
       <Routes>
         <Route path="/EcomSignUp" element={<EcomSignUp></EcomSignUp>}></Route>
+        <Route path="/EcomMyCart" element={<EcomMyCart></EcomMyCart>}></Route>
+        <Route path='/checkout' element={<EcomEmailVeri></EcomEmailVeri>}></Route>
+        <Route path="/shipping" element={<EcomShippingDetails></EcomShippingDetails>}></Route>
+        <Route path="/payment" element={<EcomPayment></EcomPayment>}></Route>
+        <Route path="/userproductview/:id" element={<EcomProductView></EcomProductView>}></Route>
+        <Route path="/products" element={<EcomProducts></EcomProducts>}></Route>
         <Route path='/login' element={<EcomLogin></EcomLogin>}></Route>
         <Route path='/home' element={<EcomHome></EcomHome>}></Route>
-        <Route path="/" element={<NetflixDashboard/>}></Route>
+        <Route path="/" element={<EcomSignUp/>}></Route>
         <Route path="/dashboard" element = {<NetflixDashboard></NetflixDashboard>}></Route>
         <Route path = "/netflixhome" element={<NetflixHomes></NetflixHomes>}></Route>
         <Route path = "/netflixmovies" element={<NetflixMovies></NetflixMovies>}></Route>
