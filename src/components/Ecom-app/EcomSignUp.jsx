@@ -20,9 +20,7 @@ export const EcomSignUp = () => {
       const res = await axios.post("http://localhost:9999/api/public/esignup", formData);
       setSuccessMsg("✅ Registered successfully! Redirecting...");
       setError("");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      setTimeout(() => navigate("/login"), 2000);
       reset();
     } catch (error) {
       const msg = error.response?.data?.message || "Signup failed.";
@@ -32,64 +30,64 @@ export const EcomSignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200">
-      <div className="backdrop-blur-lg bg-white/30 border border-white/40 shadow-2xl rounded-3xl p-8 w-full max-w-md transition-all duration-300">
-        <h2 className="text-3xl font-bold text-center text-gray-800 drop-shadow mb-6">📝 Sign Up</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white px-4 py-8">
+      <div className="backdrop-blur-lg bg-white/5 border border-gray-700 shadow-2xl rounded-3xl p-8 w-full max-w-md transition-all duration-300">
+        <h2 className="text-3xl font-bold text-center text-white drop-shadow mb-6">📝 Sign Up</h2>
 
         {error && (
-          <div className="mb-4 px-4 py-2 bg-red-200 text-red-800 rounded-md shadow-sm text-sm">
+          <div className="mb-4 px-4 py-2 bg-red-800/30 text-red-300 border border-red-500/30 rounded-md shadow-sm text-sm">
             {error}
           </div>
         )}
 
         {successMsg && (
-          <div className="mb-4 px-4 py-2 bg-green-200 text-green-800 rounded-md shadow-sm text-sm">
+          <div className="mb-4 px-4 py-2 bg-green-700/30 text-green-300 border border-green-500/30 rounded-md shadow-sm text-sm">
             {successMsg}
           </div>
         )}
 
         <form onSubmit={handleSubmit(submithandler)} encType="multipart/form-data" className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700">First Name</label>
+            <label className="block text-sm font-medium text-gray-300">First Name</label>
             <input
               type="text"
               {...register("first_name")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-white/70 backdrop-blur focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md"
+              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
               placeholder="John"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-300">Email</label>
             <input
               type="email"
               {...register("email")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-white/70 backdrop-blur focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md"
+              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
               placeholder="john@example.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-300">Password</label>
             <input
               type="password"
               {...register("password")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-white/70 backdrop-blur focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md"
+              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
               placeholder="********"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
+            <label className="block text-sm font-medium text-gray-300">Profile Picture</label>
             <input
               type="file"
               {...register("profilePicture")}
               accept="image/*"
               required
-              className="mt-1 block w-full text-sm text-gray-800 bg-white/70 rounded-xl px-4 py-2 shadow-md"
+              className="mt-1 block w-full text-sm text-gray-100 file:bg-indigo-700 file:border-none file:px-4 file:py-2 file:rounded-xl file:text-white file:cursor-pointer file:hover:bg-indigo-800 bg-gray-800/80 rounded-xl shadow-md"
             />
           </div>
 
@@ -100,7 +98,13 @@ export const EcomSignUp = () => {
             Create Account
           </button>
         </form>
-        <p class="sign-up text-center">Already have an Account?<Link to="/login">Login</Link></p>
+
+        <p className="text-center text-sm mt-5 text-gray-400">
+          Already have an account?{" "}
+          <Link to="/login" className="text-indigo-400 hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

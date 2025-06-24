@@ -4,12 +4,13 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { EcomEmailVeri } from "./EcomEmailVeri";
-
+import "./EcomMyCart.css"; // ⬅️ Add a custom CSS file
 
 export const EcomMyCart = () => {
   const [cart, setCart] = useState([]);
-    const navigate = useNavigate()
+  const [totalPrice, settotalPrice] = useState(0);
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("http://localhost:9999/mycart", {
@@ -18,9 +19,34 @@ export const EcomMyCart = () => {
         },
       })
       .then((res) => {
-        setCart(res.data.products);
+        if (res.data === "please Login") {
+          toast.warning("Please Login", {
+            position: "top-center",
+            autoClose: 5000,
+            theme: "dark",
+            transition: Bounce,
+          });
+
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        } else {
+          setCart(res.data.products);
+        }
       });
   }, []);
+
+  useEffect(() => {
+    try {
+      const total = cart.reduce(
+        (acc, item) => acc + item.product.price * item.qty,
+        0
+      );
+      settotalPrice(total);
+    } catch {
+      settotalPrice(0);
+    }
+  }, [cart]);
 
   const removeItem = async (id) => {
     const res = await axios.delete(`http://localhost:9999/removecartitem/${id}`, {
@@ -29,18 +55,11 @@ export const EcomMyCart = () => {
       },
     });
 
-    if (res.data.products.length !== 0) {
-      toast.success("Item removed successfully", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-        transition: Bounce,
-      });
-    }
+    toast.success("Item removed successfully", {
+      position: "top-center",
+      autoClose: 3000,
+      theme: "dark",
+    });
 
     setCart(res.data.products);
   };
@@ -51,7 +70,6 @@ export const EcomMyCart = () => {
         authToken: localStorage.getItem("authToken"),
       },
     });
-
     setCart(res.data.products);
   };
 
@@ -61,88 +79,58 @@ export const EcomMyCart = () => {
         authToken: localStorage.getItem("authToken"),
       },
     });
-
     setCart(res.data.products);
   };
-const product=()=>
-{
-    
-    navigate(`/products`)
-}
-  // 🧮 Calculate total cart price
-  const totalPrice = cart.reduce(
-    (acc, item) => acc + item.product.price * item.qty,
-    0
-  );
-const checkout=()=>
-{
-    
-   navigate("/shipping")
-}
+
+  const checkout = () => navigate("/checkout",{state:{price:totalPrice}});
+  const product = () => navigate("/products");
+
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">🛒 My Cart</h2>
+    <div className="cart-container">
+      <h2 className="text-center mb-4 text-light">🛒 My Cart</h2>
 
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick={false}
-        pauseOnHover
-        draggable
-        theme="dark"
-        transition={Bounce}
-      />
-    
-      <table className="table table-dark table-striped text-center align-middle">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Change Quantity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart?.map((p) => (
-            <tr key={p.cartitemId}>
-              <td>{p.product.productName}</td>
-              <td>{p.product.category}</td>
-              <td>{p.qty}</td>
-              <td>₹{p.product.price * p.qty}</td>
-              <td>
-                <button
-                  className="btn btn-sm btn-light me-2"
-                  onClick={() => minusqty(p.cartitemId)}
-                >
-                  −
-                </button>
-                <button
-                  className="btn btn-sm btn-light"
-                  onClick={() => plusqty(p.cartitemId)}
-                >
-                  +
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => removeItem(p.cartitemId)}
-                >
-                  Remove
-                </button>
-              </td>
+      <ToastContainer />
+
+      <div className="table-responsive">
+        <table className="table table-dark table-striped text-center align-middle shadow-lg rounded">
+          <thead className="table-secondary text-dark">
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Change Quantity</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {cart?.map((p) => (
+              <tr key={p.cartitemId}>
+                <td>{p.product.productName}</td>
+                <td>{p.product.category}</td>
+                <td>{p.qty}</td>
+                <td>₹{p.product.price * p.qty}</td>
+                <td>
+                  <button className="btn btn-outline-light btn-sm me-2" onClick={() => minusqty(p.cartitemId)}>−</button>
+                  <button className="btn btn-outline-light btn-sm" onClick={() => plusqty(p.cartitemId)}>+</button>
+                </td>
+                <td>
+                  <button className="btn btn-danger btn-sm" onClick={() => removeItem(p.cartitemId)}>Remove</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      <h4 className="text-end me-2">🧾 Total Price: <span className="text-success">₹{totalPrice}</span></h4>
-      <Button onClick={()=>checkout()}>Proceed to Checkout</Button>
-      <Button onClick={()=>product()}>Back To Products</Button>
-          
+      <h4 className="text-end me-2 text-light">
+        🧾 Total Price: <span className="text-success">₹{totalPrice}</span>
+      </h4>
+
+      <div className="d-flex justify-content-end gap-3 mt-3">
+        <Button variant="success" onClick={checkout}>Proceed to Checkout</Button>
+        <Button variant="outline-light" onClick={product}>Back to Products</Button>
+      </div>
     </div>
   );
 };

@@ -1,12 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { EcomShippingDetails } from "./EcomShippingDetails";
 export const EcomEmailVeri=(props)=>
 {
     const {register,handleSubmit} = useForm()
     const navigate = useNavigate()
+    const location = useLocation()
+    const price = location.state?.price
     const submitHandler=async(data)=>
     {
         const formData = new FormData()
@@ -18,7 +20,8 @@ export const EcomEmailVeri=(props)=>
         })
         if(res.status==200)
         {
-            <EcomShippingDetails price={props}></EcomShippingDetails>
+            
+            navigate("/shipping",{state:{price}})
         }
     } 
     

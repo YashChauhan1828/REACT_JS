@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export const EcomShippingDetails = (x) => {
+export const EcomShippingDetails = () => {
+  const location = useLocation();
+const price = location.state?.price;
   const locationData = {
     India: {
       Gujarat: ["Surat", "Ahmedabad", "Vadodara", "Rajkot", "Gandhinagar"],
@@ -51,7 +53,7 @@ export const EcomShippingDetails = (x) => {
       }
     });
     if (res.status === 200) {
-      navigate("/payment");
+      navigate("/payment",{ state: { price } });
     }
   };
 
