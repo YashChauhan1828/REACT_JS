@@ -50,6 +50,10 @@ import { EcomMyCart } from './components/Ecom-app/EcomMyCart';
 import { EcomEmailVeri } from './components/Ecom-app/EcomEmailVeri';
 import { EcomShippingDetails } from './components/Ecom-app/EcomShippingDetails';
 import { EcomPayment } from './components/Ecom-app/EcomPayment';
+import { EcomSuccess } from './components/Ecom-app/EcomSuccess';
+import { EcomOrderHistory } from './components/Ecom-app/EcomOrderHistory';
+import { EcomAddProduct } from './components/Ecom-app/EcomAddProduct';
+import { EcomAdminProducts } from './components/Ecom-app/EcomAdminProducts';
 
 
 
@@ -72,8 +76,12 @@ var address = {
       <EcomNavbar></EcomNavbar>
       {/* <Navbar></Navbar> */}
       <Routes>
+        <Route path='/admin' element={<EcomAddProduct></EcomAddProduct>}></Route>
         <Route path="/EcomSignUp" element={<EcomSignUp></EcomSignUp>}></Route>
+        <Route path="/adminproducts" element={<EcomAdminProducts></EcomAdminProducts>}></Route>
         <Route path="/EcomMyCart" element={<EcomMyCart></EcomMyCart>}></Route>
+        <Route path="/orderHistory" element={<EcomOrderHistory></EcomOrderHistory>}></Route>
+        <Route path='/success' element={<EcomSuccess></EcomSuccess>}></Route>
         <Route path='/checkout' element={<EcomEmailVeri></EcomEmailVeri>}></Route>
         <Route path="/shipping" element={<EcomShippingDetails></EcomShippingDetails>}></Route>
         <Route path="/payment" element={<EcomPayment></EcomPayment>}></Route>

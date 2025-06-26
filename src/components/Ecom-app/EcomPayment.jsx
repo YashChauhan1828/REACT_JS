@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EcomPayment = () => {
-    const location = useLocation();
+const location = useLocation();
 const price = location.state?.price;
-    const [formData, setFormData] = useState({
+const navigate = useNavigate()
+const [formData, setFormData] = useState({
         creditcardnumber: "",
         date: "",
         cvv: ""
@@ -56,6 +57,7 @@ const price = location.state?.price;
             }
         })
         console.log(res.data)
+        navigate("/success")
         }
     };
 

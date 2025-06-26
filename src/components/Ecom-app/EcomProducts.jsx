@@ -11,6 +11,7 @@ export const EcomProducts = () => {
 
   useEffect(() => {
     axios.get("http://localhost:9999/api/public/userproducts").then((res) => {
+      console.log(res.data)  
       setProducts(res.data.products);
     });
   }, []);

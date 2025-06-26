@@ -30,6 +30,7 @@ export const EcomHome = ()=>
                 navigate("/login");
                 }, 2000);
             }
+            console.log(res.data)
             setuser(res.data)
         })
         
@@ -52,7 +53,7 @@ export const EcomHome = ()=>
             />
             <h1>Welcome Home</h1>
             <h2>Name:{user.firstName}</h2>
-            <img src={user.profileImageBase64} alt="Profile" width={150}  height={150}
+            <img src={user.profilePicPath} alt="Profile" width={150}  height={150}
             style={{ objectFit: "cover", borderRadius: "50%" }} />
             <button onClick={()=>{products()}}>Browse Products</button>
         </div>
