@@ -31,6 +31,7 @@ export const EcomMyCart = () => {
             navigate("/login");
           }, 2000);
         } else {
+          console.log(res.data.products.length)
           setCart(res.data.products);
         }
       });
@@ -80,9 +81,24 @@ export const EcomMyCart = () => {
       },
     });
     setCart(res.data.products);
-  };
-
-  const checkout = () => navigate("/checkout",{state:{price:totalPrice}});
+  }
+  const checkout = () => 
+    {
+      
+      if(cart.length!=0)
+      {
+        navigate("/checkout",{state:{price:totalPrice}});
+      }
+      else
+      {
+          toast.warning("Please Select Product", {
+            position: "top-center",
+            autoClose: 5000,
+            theme: "dark",
+            transition: Bounce,
+          });
+      }
+    }
   const product = () => navigate("/products");
 
   return (
@@ -96,6 +112,7 @@ export const EcomMyCart = () => {
           <thead className="table-secondary text-dark">
             <tr>
               <th>Name</th>
+              <th>Image</th>
               <th>Category</th>
               <th>Qty</th>
               <th>Price</th>
@@ -107,6 +124,7 @@ export const EcomMyCart = () => {
             {cart?.map((p) => (
               <tr key={p.cartitemId}>
                 <td>{p.product.productName}</td>
+                <td><img src={p.product.productImagePath} class="product-img"/></td>
                 <td>{p.product.category}</td>
                 <td>{p.qty}</td>
                 <td>₹{p.product.price * p.qty}</td>

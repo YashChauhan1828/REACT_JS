@@ -16,18 +16,17 @@ export const EcomAddProduct=()=>
         formData.append("productImage",data.productImage[0])
         try
         {
-            const res = await axios.post("http://localhost:9999/api/public/saveproduct",formData)
+            const res = await axios.post("http://localhost:9999/api/admin/saveproduct",formData)
             console.log(res.data)
-            if(res.status===200)
-            {
-                navigate("/adminproducts")
-            }
         }
         catch(error)
         {
 
         }
-        
+    }
+    const ListProducts=async()=>
+    {
+              navigate("/adminproducts")
     }
     return(
         <div>
@@ -50,6 +49,7 @@ export const EcomAddProduct=()=>
             </label><br></br>
             <input type="submit" value="submit"/>
             </form>
+            <button onClick={()=>ListProducts()}>Products</button>
         </div>
     )
 }

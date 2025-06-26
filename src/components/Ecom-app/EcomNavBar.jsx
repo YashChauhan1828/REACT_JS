@@ -27,10 +27,14 @@ export const EcomNavbar = () =>
         <Link class="nav-link" to="/EcomMyCart">MyCart</Link>
         
       </li>
-   
+      
+      <li class="nav-item active">
+        <Link class="nav-link" to="/EcomWishCart">WishCart</Link>
+        
+      </li>
       
        <li class="nav-item active">
-        <Link class="nav-link" to="/login">Logout</Link>
+        <Link class="nav-link" to="/logout">Logout</Link>
         
       </li>
     </ul>

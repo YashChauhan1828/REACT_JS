@@ -54,6 +54,10 @@ import { EcomSuccess } from './components/Ecom-app/EcomSuccess';
 import { EcomOrderHistory } from './components/Ecom-app/EcomOrderHistory';
 import { EcomAddProduct } from './components/Ecom-app/EcomAddProduct';
 import { EcomAdminProducts } from './components/Ecom-app/EcomAdminProducts';
+import { EcomAdminViewProduct } from './components/Ecom-app/EcomAdminViewProduct';
+import { EcomAdminUpdateProduct } from './components/Ecom-app/EcomAdminUpdateProduct';
+import { EcomLogout } from './components/Ecom-app/EcomLogout';
+import { EcomMyWishCart } from './components/Ecom-app/EcomMyWishCart';
 
 
 
@@ -78,6 +82,10 @@ var address = {
       <Routes>
         <Route path='/admin' element={<EcomAddProduct></EcomAddProduct>}></Route>
         <Route path="/EcomSignUp" element={<EcomSignUp></EcomSignUp>}></Route>
+        <Route path='/EcomWishCart' element={<EcomMyWishCart></EcomMyWishCart>}></Route>
+        <Route path="/logout" element={<EcomLogout></EcomLogout>}></Route>
+        <Route path='/adminupdateproduct/:id' element={<EcomAdminUpdateProduct></EcomAdminUpdateProduct>}></Route>
+        <Route path="/adminviewproduct/:id" element={<EcomAdminViewProduct></EcomAdminViewProduct>}></Route>
         <Route path="/adminproducts" element={<EcomAdminProducts></EcomAdminProducts>}></Route>
         <Route path="/EcomMyCart" element={<EcomMyCart></EcomMyCart>}></Route>
         <Route path="/orderHistory" element={<EcomOrderHistory></EcomOrderHistory>}></Route>
