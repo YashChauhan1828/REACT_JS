@@ -20,9 +20,8 @@ export const EcomEmailVeri = () => {
           authToken: localStorage.getItem("authToken"),
         },
       });
-
       if (res.status === 200) {
-        navigate("/shipping", { state: { price } });
+        navigate(`/otpveri/${res.data}`, { state: { price } });
       }
     } catch (err) {
       console.error("Error sending email", err);

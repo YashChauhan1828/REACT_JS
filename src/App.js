@@ -58,6 +58,9 @@ import { EcomAdminViewProduct } from './components/Ecom-app/EcomAdminViewProduct
 import { EcomAdminUpdateProduct } from './components/Ecom-app/EcomAdminUpdateProduct';
 import { EcomLogout } from './components/Ecom-app/EcomLogout';
 import { EcomMyWishCart } from './components/Ecom-app/EcomMyWishCart';
+import { EcomFooter } from './components/Ecom-app/EcomFooter';
+import { EcomForgetPassword } from './components/Ecom-app/EcomForgetPassword';
+import { EcomOtpVerification } from './components/Ecom-app/EcomOtpVerification';
 
 
 
@@ -81,6 +84,8 @@ var address = {
       {/* <Navbar></Navbar> */}
       <Routes>
         <Route path='/admin' element={<EcomAddProduct></EcomAddProduct>}></Route>
+        <Route path='/EcomForgotPassword' element={<EcomForgetPassword></EcomForgetPassword>}></Route>
+        <Route path='/otpveri/:otp' element={<EcomOtpVerification></EcomOtpVerification>}></Route>
         <Route path="/EcomSignUp" element={<EcomSignUp></EcomSignUp>}></Route>
         <Route path='/EcomWishCart' element={<EcomMyWishCart></EcomMyWishCart>}></Route>
         <Route path="/logout" element={<EcomLogout></EcomLogout>}></Route>
@@ -131,6 +136,7 @@ var address = {
         <Route path="/formdemo8/search_query=/:movie/imdbID/:id" element={<MovieDetails></MovieDetails>}></Route>
 
       </Routes>
+      <EcomFooter></EcomFooter>
      {/* <Header t = {title} c = {city}></Header>
     <UseStateDemo3></UseStateDemo3> */}
      {/* <UseStateDemo2></UseStateDemo2> */}

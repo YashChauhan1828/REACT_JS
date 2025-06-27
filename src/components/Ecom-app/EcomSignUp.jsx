@@ -30,80 +30,74 @@ export const EcomSignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white px-4 py-8">
-      <div className="backdrop-blur-lg bg-white/5 border border-gray-700 shadow-2xl rounded-3xl p-8 w-full max-w-md transition-all duration-300">
-        <h2 className="text-3xl font-bold text-center text-white drop-shadow mb-6">📝 Sign Up</h2>
+    <div className="container d-flex align-items-center justify-content-center min-vh-100 bg-dark text-white">
+      <div className="card p-4 shadow-lg rounded-4" style={{ maxWidth: "450px", width: "100%", backgroundColor: "grey" }}>
+        <h2 className="text-center mb-4 fw-bold">📝 Sign Up</h2>
 
         {error && (
-          <div className="mb-4 px-4 py-2 bg-red-800/30 text-red-300 border border-red-500/30 rounded-md shadow-sm text-sm">
-            {error}
-          </div>
+          <div className="alert alert-danger py-2 px-3 small">{error}</div>
         )}
 
         {successMsg && (
-          <div className="mb-4 px-4 py-2 bg-green-700/30 text-green-300 border border-green-500/30 rounded-md shadow-sm text-sm">
-            {successMsg}
-          </div>
+          <div className="alert alert-success py-2 px-3 small">{successMsg}</div>
         )}
 
-        <form onSubmit={handleSubmit(submithandler)} encType="multipart/form-data" className="space-y-5">
-          <div>
-            <label className="block text-sm font-medium text-gray-300">First Name</label>
+        <form onSubmit={handleSubmit(submithandler)} encType="multipart/form-data">
+          <div className="mb-3">
+            <label className="form-label">First Name</label>
             <input
               type="text"
               {...register("first_name")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
+              className="form-control  text-white border-0"
               placeholder="John"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">Email</label>
+          <div className="mb-3">
+            <label className="form-label">Email address</label>
             <input
               type="email"
               {...register("email")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
+              className="form-control  text-white border-0"
               placeholder="john@example.com"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">Password</label>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
             <input
               type="password"
               {...register("password")}
               required
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md placeholder-gray-400"
+              className="form-control  text-white border-0"
               placeholder="********"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">Profile Picture</label>
+          <div className="mb-4">
+            <label className="form-label">Profile Picture</label>
             <input
               type="file"
               {...register("profilePicture")}
               accept="image/*"
               required
-              className="mt-1 block w-full text-sm text-gray-100 file:bg-indigo-700 file:border-none file:px-4 file:py-2 file:rounded-xl file:text-white file:cursor-pointer file:hover:bg-indigo-800 bg-gray-800/80 rounded-xl shadow-md"
+              className="form-control bg-secondary text-white border-0"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105 duration-300"
+            className="btn btn-primary w-100 fw-semibold"
           >
             Create Account
           </button>
         </form>
 
-        <p className="text-center text-sm mt-5 text-gray-400">
+        <p className="text-center mt-3 small">
           Already have an account?{" "}
-          <Link to="/login" className="text-indigo-400 hover:underline">
-            Login
-          </Link>
+          <Link to="/login" className="text-info text-decoration-none">Login</Link>
         </p>
       </div>
     </div>

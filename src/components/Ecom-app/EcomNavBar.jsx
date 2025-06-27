@@ -1,45 +1,58 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaHome, FaBoxOpen, FaShoppingCart, FaHeart, FaSignOutAlt, FaStore } from "react-icons/fa";
 
-export const EcomNavbar = () => 
-{
-    return (
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <Link class="navbar-brand" to = "/EcomSignUp">E-shop</Link>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+export const EcomNavbar = () => {
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div className="container-fluid">
+          <Link className="navbar-brand fw-bold d-flex align-items-center" to="/home">
+            <FaStore className="me-2" /> E-Shop
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <Link class="nav-link" to="/home">Home</Link>
-        
-        
-      </li>
-      
-       <li class="nav-item active">
-        <Link class="nav-link" to="/products">Products</Link>
-        
-      </li>
-       <li class="nav-item active">
-        <Link class="nav-link" to="/EcomMyCart">MyCart</Link>
-        
-      </li>
-      
-      <li class="nav-item active">
-        <Link class="nav-link" to="/EcomWishCart">WishCart</Link>
-        
-      </li>
-      
-       <li class="nav-item active">
-        <Link class="nav-link" to="/logout">Logout</Link>
-        
-      </li>
-    </ul>
-  </div>
-</nav>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/home">
+                  <FaHome className="me-1" /> Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  <FaBoxOpen className="me-1" /> Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/EcomMyCart">
+                  <FaShoppingCart className="me-1" /> My Cart
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/EcomWishCart">
+                  <FaHeart className="me-1 text-danger" /> Wish Cart
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/logout">
+                  <FaSignOutAlt className="me-1" /> Logout
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-    )
-}
+      </nav>
+    </>
+  );
+};

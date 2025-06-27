@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./EcomLogin.css"; // 🔹 Custom CSS for dark styling
 
 export const EcomLogin = () => {
@@ -45,8 +45,11 @@ export const EcomLogin = () => {
         </div>
         <div className="d-grid">
           <input type="submit" className="btn btn-success" value="Login" />
-        </div>
+        </div><br></br>
+        <Link to="/EcomForgotPassword">Forgot password</Link><br></br>
+      <p class="sign-up">Don't have an Account?<Link to="/EcomSignUp">SignUp</Link></p>
       </form>
+      
     </div>
   );
 };

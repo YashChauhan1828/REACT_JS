@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./EcomProducts.css"; // 👈 Link to custom CSS
+import { FaHeart } from "react-icons/fa";
 
 export const EcomProducts = () => {
   const [products, setProducts] = useState([]);
@@ -78,7 +79,7 @@ export const EcomProducts = () => {
                 <i className="fas fa-eye"></i> 
               </button>
               <button onClick={() => wishProduct(product.productId)} className="btn btn-secondary">
-                <i className="fas fa-heart"></i> 
+                <FaHeart className="me-1 text-danger" /> 
               </button>
             </div>
           </div>
