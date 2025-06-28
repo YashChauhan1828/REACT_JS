@@ -5,11 +5,12 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./EcomProducts.css"; // 👈 Link to custom CSS
 import { FaHeart } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 export const EcomProducts = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
+  const {register,handleSubmit}=useForm()
   useEffect(() => {
     axios.get("http://localhost:9999/api/public/userproducts").then((res) => {
       console.log(res.data)  
@@ -59,11 +60,36 @@ export const EcomProducts = () => {
       }
     })
   }
+  const submithandler=async(data)=>
+  {
+    const res = await axios.get("http://localhost:9999/api/public/search",{
+      params:{
+        query:data.search
+      }
+    })
+    setProducts(res.data.product);
+    if(res.data.product.length===0)
+    {
+      toast.warning("🛒 No Product Found", {
+            position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+            transition: Bounce,
+          });
+    }
+  }
   return (
     <div className="dark-container">
       <ToastContainer />
       <h1 className="dark-heading">🛍️ Product List</h1>
-
+      <div class="container mb-4">
+      <form class="form-inline d-flex justify-content-center" onSubmit={handleSubmit(submithandler)}>
+          <label>
+            Search: <input aria-label="Search" class="form-control mr-2 w-100" type="text" placeholder="Enter product name" {...register("search")}  />
+          </label>
+          <input type="submit" value="Search"/>
+      </form>
+      </div>
       <div className="product-grid">
         {products?.map((product) => (
           <div key={product.productId} className="product-card">

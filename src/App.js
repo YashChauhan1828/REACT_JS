@@ -61,6 +61,7 @@ import { EcomMyWishCart } from './components/Ecom-app/EcomMyWishCart';
 import { EcomFooter } from './components/Ecom-app/EcomFooter';
 import { EcomForgetPassword } from './components/Ecom-app/EcomForgetPassword';
 import { EcomOtpVerification } from './components/Ecom-app/EcomOtpVerification';
+import { EcomAdminOrder } from './components/Ecom-app/EcomAdminOrder';
 
 
 
@@ -92,6 +93,7 @@ var address = {
         <Route path='/adminupdateproduct/:id' element={<EcomAdminUpdateProduct></EcomAdminUpdateProduct>}></Route>
         <Route path="/adminviewproduct/:id" element={<EcomAdminViewProduct></EcomAdminViewProduct>}></Route>
         <Route path="/adminproducts" element={<EcomAdminProducts></EcomAdminProducts>}></Route>
+        <Route path="/adminorders" element={<EcomAdminOrder></EcomAdminOrder>}></Route>
         <Route path="/EcomMyCart" element={<EcomMyCart></EcomMyCart>}></Route>
         <Route path="/orderHistory" element={<EcomOrderHistory></EcomOrderHistory>}></Route>
         <Route path='/success' element={<EcomSuccess></EcomSuccess>}></Route>

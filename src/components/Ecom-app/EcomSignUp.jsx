@@ -49,7 +49,7 @@ export const EcomSignUp = () => {
               type="text"
               {...register("first_name")}
               required
-              className="form-control  text-white border-0"
+              className="form-control  text border-0"
               placeholder="John"
             />
           </div>
@@ -60,7 +60,7 @@ export const EcomSignUp = () => {
               type="email"
               {...register("email")}
               required
-              className="form-control  text-white border-0"
+              className="form-control  text border-0"
               placeholder="john@example.com"
             />
           </div>
@@ -71,7 +71,7 @@ export const EcomSignUp = () => {
               type="password"
               {...register("password")}
               required
-              className="form-control  text-white border-0"
+              className="form-control  text border-0"
               placeholder="********"
             />
           </div>
@@ -83,7 +83,7 @@ export const EcomSignUp = () => {
               {...register("profilePicture")}
               accept="image/*"
               required
-              className="form-control bg-secondary text-white border-0"
+              className="form-control bg-secondary text border-0"
             />
           </div>
 

@@ -38,10 +38,12 @@ export const EcomOrderHistory = () => {
                   <th>Qty</th>
                   <th>Price (₹)</th>
                   <th>Total</th>
+                  <th>Status</th>
+                  <th>Order Date</th>
                 </tr>
               </thead>
               <tbody>
-                {order.orderitems.map((item, i) => (
+                {order.orderitems?.map((item, i) => (
                   <tr key={i}>
                     <td>{item.product.productName}</td>
                     <td>
@@ -54,6 +56,8 @@ export const EcomOrderHistory = () => {
                     <td>{item.qty}</td>
                     <td>{item.product.price}</td>
                     <td>{(item.qty * item.product.price).toFixed(2)}</td>
+                    <td>{item.status}</td>
+                    <td>{item.orderDate}</td>
                   </tr>
                 ))}
               </tbody>
